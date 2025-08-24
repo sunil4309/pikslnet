@@ -1054,25 +1054,4 @@ header.nav.scrolled{ box-shadow: 0 0 20px 4px rgba(111,0,255,0.7); }
 
 /* Utility */
 .hidden{ display:none !important }
-/* === DEBUG HAMBURGER TEST === */
-.hamburger {
-  display: flex !important;  /* force it to always show */
-  flex-direction: column;
-  justify-content: space-between;
-  width: 40px;   /* bigger for testing */
-  height: 28px;
-  background: rgba(255,255,255,0.1); /* faint box to see */
-  border: 1px solid red; /* outline for debug */
-  cursor: pointer;
-  z-index: 5000;
-  position: relative;
-}
-
-.hamburger span {
-  display: block;
-  height: 4px;
-  width: 100%;
-  background: lime;   /* neon green so you see it */
-  border-radius: 3px;
-}
 

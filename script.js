@@ -304,6 +304,104 @@ renderPCSpecs();
 // Run render
 renderPCSpecs();
 
+document.addEventListener("DOMContentLoaded", function () {
+  const audioPlayer = document.getElementById("audioPlayer");
+  const playPauseBtn = document.getElementById("playPause");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+  const seekBar = document.getElementById("seekBar");
+  const volumeBar = document.getElementById("volumeBar");
+  const playlist = document.getElementById("playlist").getElementsByTagName("li");
+
+  const trackTitle = document.getElementById("trackTitle");
+  const trackArtist = document.getElementById("trackArtist");
+  const albumCover = document.getElementById("albumCover");
+  const currentTimeEl = document.getElementById("currentTime");
+  const durationEl = document.getElementById("duration");
+
+  let currentTrack = 0;
+
+  // Load track
+  function loadTrack(index) {
+    const song = playlist[index];
+    audioPlayer.src = song.getAttribute("data-src");
+    trackTitle.textContent = song.textContent;
+    trackArtist.textContent = song.getAttribute("data-artist");
+    albumCover.src = song.getAttribute("data-cover");
+    audioPlayer.load();
+  }
+
+  // Play / Pause toggle
+  function togglePlay() {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      playPauseBtn.textContent = "⏸";
+    } else {
+      audioPlayer.pause();
+      playPauseBtn.textContent = "▶";
+    }
+  }
+
+  // Next / Previous
+  function playNext() {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadTrack(currentTrack);
+    audioPlayer.play();
+  }
+
+  function playPrev() {
+    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+    loadTrack(currentTrack);
+    audioPlayer.play();
+  }
+
+  // Update seek bar
+  audioPlayer.addEventListener("timeupdate", () => {
+    seekBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100 || 0;
+
+    // Update time
+    let curMins = Math.floor(audioPlayer.currentTime / 60);
+    let curSecs = Math.floor(audioPlayer.currentTime % 60);
+    let durMins = Math.floor(audioPlayer.duration / 60) || 0;
+    let durSecs = Math.floor(audioPlayer.duration % 60) || 0;
+
+    currentTimeEl.textContent = `${curMins}:${curSecs.toString().padStart(2, "0")}`;
+    durationEl.textContent = `${durMins}:${durSecs.toString().padStart(2, "0")}`;
+  });
+
+  // Seek
+  seekBar.addEventListener("input", () => {
+    audioPlayer.currentTime = (seekBar.value / 100) * audioPlayer.duration;
+  });
+
+  // Volume
+  volumeBar.addEventListener("input", () => {
+    audioPlayer.volume = volumeBar.value;
+  });
+
+  // Playlist click
+  Array.from(playlist).forEach((song, index) => {
+    song.addEventListener("click", () => {
+      currentTrack = index;
+      loadTrack(currentTrack);
+      audioPlayer.play();
+      playPauseBtn.textContent = "⏸";
+    });
+  });
+
+  // Auto next
+  audioPlayer.addEventListener("ended", playNext);
+
+  // Button bindings
+  playPauseBtn.addEventListener("click", togglePlay);
+  nextBtn.addEventListener("click", playNext);
+  prevBtn.addEventListener("click", playPrev);
+
+  // Load first track
+  loadTrack(currentTrack);
+});
+
+
 // Year in footer
 const y = document.getElementById('year');
 if (y) y.textContent = new Date().getFullYear();
