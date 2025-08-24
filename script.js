@@ -33,6 +33,46 @@ window.addEventListener("scroll", () => {
   }
 });
 
+// Hamburger toggle
+const menuBtn = document.getElementById("menuBtn");
+const navbar = document.getElementById("navbar");
+
+menuBtn.addEventListener("click", () => {
+  menuBtn.classList.toggle("active");
+  navbar.classList.toggle("active");
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('menuBtn');
+  const navbar  = document.getElementById('navbar');
+
+  if (!menuBtn || !navbar) return;
+
+  // Scroll glow
+  const header = document.querySelector('header.nav');
+  const onScroll = () => {
+    if (window.scrollY > 10) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+
+  // Menu toggle
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    navbar.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  });
+
+  // Close menu when a link is clicked
+  navbar.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      menuBtn.classList.remove('active');
+      navbar.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    })
+  );
+});
 
 
 // --- Contact Form Submit with Popup ---
