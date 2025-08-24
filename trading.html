@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pikslnet | Neon Trading Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+<style>
+  :root{
+    --primary:#6f00ff;
+    --ink:#ffffff;
+    --bg:#0a041e;
+    --card:#140a2b;
+    --muted:#cfc7ff;
+    --good:#18e07e;
+    --bad:#ff4d6d;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: Inter, system-ui, Arial, sans-serif; color:var(--ink);
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(111,0,255,.25), transparent 60%), #000;
+  }
+  .nav {
+    position: sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between;
+    padding:14px 22px; background:rgba(10,4,30,.6); backdrop-filter:blur(10px); border-bottom:1px solid rgba(111,0,255,.35);
+  }
+  .logo { display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--ink); font-weight:700; }
+  .logo .dot { width:10px; height:10px; border-radius:50%; background:var(--primary); box-shadow:0 0 12px var(--primary); }
+  .nav-links{display:flex; gap:18px; list-style:none; margin:0; padding:0;}
+  .nav-links a{color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:12px; transition:.25s;}
+  .nav-links a:hover{color:var(--ink); background:rgba(111,0,255,.15); box-shadow:0 0 10px var(--primary);}
+  main{max-width:1100px; margin:24px auto; padding:0 16px;}
+
+  .status{
+    display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin:12px 0 20px;
+  }
+  .pill{
+    padding:10px 14px; border:1px solid rgba(255,255,255,.15); border-radius:14px; background:rgba(255,255,255,.03);
+    box-shadow: inset 0 0 12px rgba(111,0,255,.15);
+  }
+  .btn{
+    background:transparent; color:var(--ink); border:1px solid rgba(255,255,255,.18);
+    padding:10px 14px; border-radius:12px; cursor:pointer; transition:.2s;
+  }
+  .btn:hover{ border-color:var(--primary); box-shadow:0 0 10px var(--primary); }
+  .btn.primary{ background:linear-gradient(90deg, rgba(111,0,255,.9), rgba(155,92,255,.8)); border:none; box-shadow:0 0 16px var(--primary); }
+  .btn.primary:hover{ transform: translateY(-1px); }
+
+  .grid{
+    display:grid; gap:16px; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  }
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+    border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:14px;
+    box-shadow:0 0 20px rgba(111,0,255,.15), inset 0 0 18px rgba(111,0,255,.06);
+    display:flex; flex-direction:column; gap:10px; position:relative; overflow:hidden;
+  }
+  .badge{
+    position:absolute; top:10px; right:10px; font-size:.75rem; padding:4px 8px; border-radius:999px; letter-spacing:.3px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+  }
+  .r-common{ color:#8eb6ec; }
+  .r-rare{ color:rgb(252, 0, 0); text-shadow:0 0 8px #74f; }
+  .r-epic{ color:#08fffff6; text-shadow:0 0 10px #b84dff; }
+  .r-legendary{ color:#ffb300; text-shadow:0 0 12px #ffd166; }
+  .art{
+    height:120px; border-radius:12px; background:
+      radial-gradient(200px 60px at 20% -20%, rgba(111,0,255,.35), transparent),
+      linear-gradient(120deg, rgba(111,0,255,.25), rgba(155,92,255,.15));
+    border:1px solid rgba(255,255,255,.12);
+  }
+  .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .price { font-weight:700; }
+  .price.up{ color:var(--good); }
+  .price.down{ color:var(--bad); }
+
+  .columns{ display:grid; grid-template-columns: 1.6fr .4fr; gap:22px; }
+  .panel{
+    border:1px solid rgba(255,255,255,.12); border-radius:16px; padding:14px;
+    background:rgba(255,255,255,.03); box-shadow: inset 0 0 18px rgba(111,0,255,.08);
+  }
+  .panel h3{ margin:6px 0 12px; font-weight:800; letter-spacing:.3px; }
+  .empty{ color:#9da; opacity:.8; padding:10px 0; }
+  .foot{ margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+</style>
+</head>
+<body>
+    <!-- Navbar -->
+  <header class="nav">
+     <a class="logo" href="index.html">
+  <img src="images/logo.svg" alt="pikslnet logo" class="site-logo">
+</a>
+    <button class="hamburger" aria-label="Open Menu" id="menuBtn"><span></span><span></span><span></span></button>
+    <nav class="navbar">
+  <a href="index.html" class="logo"></a>
+  <ul class="nav-links">
+    <li><a href="index.html" >Home</a></li>
+    <li><a href="portfolio.html" >Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="music.html" c>Music</a></li>
+    <li><a href="trading.html" class="active">Trade</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <main>
+    
+    <div class="status">
+      <div class="pill">💰 Credits: <strong id="credits">10,000</strong></div>
+      <div class="pill">📈 Market heat: <strong id="heat">Neutral</strong></div>
+      <div class="foot">
+        <button id="tick" class="btn">⏭ Market Tick</button>
+        <button id="save" class="btn">💾 Save</button>
+        <button id="reset" class="btn">♻ Reset</button>
+      </div>
+    </div>
+
+    <div class="columns">
+      <section class="panel">
+        <h3>Marketplace</h3>
+        <div id="shop" class="grid"></div>
+      </section>
+
+      <aside class="panel">
+        <h3>Your Inventory</h3>
+        <div id="bag"></div>
+      </aside>
+    </div>
+  </main>
+
+<script>
+/** -------------------------------
+ *  Minimal “NFT-style” trading loop
+ *  (no blockchain – just JS + localStorage)
+ *  -------------------------------- */
+const $ = sel => document.querySelector(sel);
+const elShop = $("#shop");
+const elBag = $("#bag");
+const elCredits = $("#credits");
+const elHeat = $("#heat");
+const btnTick = $("#tick");
+const btnSave = $("#save");
+const btnReset = $("#reset");
+
+const RARITY = {
+  common:   { mult:[0.95,1.05], color:'r-common' },
+  rare:     { mult:[0.90,1.10], color:'r-rare' },
+  epic:     { mult:[0.85,1.15], color:'r-epic' },
+  legendary:{ mult:[0.80,1.22], color:'r-legendary' }
+};
+
+let state = load() || {
+  credits: 10000,
+  heat: 0,         // -1 cold, 0 neutral, 1 hot
+  bag: {},         // id -> qty
+  items: seedItems()
+};
+
+function seedItems(){
+  const base = [
+  {id:'PX-001', name:'Neon Sprite', rarity:'common', price:120, image:'images/instagram.svg'},
+  {id:'PX-002', name:'Quantum Bloom', rarity:'common', price:140, image:'images/quantum-bloom.png'},
+  {id:'PX-101', name:'Phase Shard', rarity:'rare', price:450, image:'images/phase-shard.png'},
+  {id:'PX-102', name:'Aether Seed', rarity:'rare', price:520, image:'images/aether-seed.png'},
+  {id:'PX-201', name:'Nova Core', rarity:'epic', price:1600, image:'images/nova-core.png'},
+  {id:'PX-202', name:'Singularity Petal', rarity:'epic', price:1850, image:'images/singularity-petal.png'},
+  {id:'PX-301', name:'Mythic Prism', rarity:'legendary', price:6200, image:'images/mythic-prism.png'},
+  {id:'PX-302', name:'Oracle Flame', rarity:'legendary', price:7100, image:'images/oracle-flame.png'}
+];
+
+  return base.map(x=>({...x, prev:x.price}));
+}
+
+function fmt(n){ return n.toLocaleString(); }
+
+function render(){
+  elCredits.textContent = fmt(state.credits);
+  elHeat.textContent = state.heat>0?'Hot':state.heat<0?'Cold':'Neutral';
+
+  // Shop
+  elShop.innerHTML = "";
+  state.items.forEach(it=>{
+    const trend = it.price>it.prev?'up': it.price<it.prev?'down':'';
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <span class="badge ${RARITY[it.rarity].color}">${it.rarity}</span>
+      <div class="art"></div>
+      <div class="row"><strong>${it.name}</strong><small>${it.id}</small></div>
+      <div class="row"><span>Price</span><span class="price ${trend}">₵ ${fmt(it.price)}</span></div>
+      <div class="row">
+        <button class="btn" data-act="buy" data-id="${it.id}">Buy</button>
+        <button class="btn" data-act="sell" data-id="${it.id}">Sell</button>
+      </div>
+    `
+    ;
+    elShop.appendChild(card);
+  });
+
+  // Inventory
+  const entries = Object.entries(state.bag).filter(([_,q])=>q>0);
+  elBag.innerHTML = entries.length? "" : `<div class="empty">No items yet. Buy something from the market →</div>`;
+  entries.forEach(([id, qty])=>{
+    const it = state.items.find(i=>i.id===id);
+    const row = document.createElement('div');
+    row.className = 'card';
+    row.innerHTML = `
+      <div class="row">
+        <strong>${it.name}</strong>
+        <span class="badge ${RARITY[it.rarity].color}">${it.rarity}</span>
+      </div>
+      <div class="row">
+        <span>Qty: ${qty}</span>
+        <span>Value: ₵ ${fmt(qty*it.price)}</span>
+      </div>
+      <div class="row">
+        <button class="btn" data-act="sell1" data-id="${id}">Sell 1</button>
+        <button class="btn" data-act="sellAll" data-id="${id}">Sell All</button>
+      </div>
+    `;
+    elBag.appendChild(row);
+  });
+}
+
+function marketTick(){
+  // global heat drift
+  const heatDrift = (Math.random()<0.25) ? (Math.random()<0.5?-1:1) : 0;
+  state.heat = Math.max(-1, Math.min(1, state.heat + heatDrift));
+
+  state.items.forEach(it=>{
+    const [lo, hi] = RARITY[it.rarity].mult;
+    const base = lo + Math.random()*(hi-lo);
+    // apply global heat (hot pushes up, cold pushes down)
+    const heat = 1 + (state.heat * (0.05 + Math.random()*0.05));
+    it.prev = it.price;
+    it.price = Math.max(20, Math.round(it.price * base * heat));
+  });
+  render();
+}
+
+function buy(id){
+  const it = state.items.find(i=>i.id===id);
+  if(!it) return;
+  if(state.credits < it.price) return alert("Not enough credits!");
+  state.credits -= it.price;
+  state.bag[id] = (state.bag[id]||0)+1;
+  render();
+}
+
+function sell(id, qty=1){
+  const it = state.items.find(i=>i.id===id);
+  if(!it || !state.bag[id]) return;
+  const sellQty = Math.min(qty, state.bag[id]);
+  state.credits += it.price * sellQty;
+  state.bag[id] -= sellQty;
+  render();
+}
+
+function save(){ localStorage.setItem('px_trade_state', JSON.stringify(state)); }
+function load(){ try{ return JSON.parse(localStorage.getItem('px_trade_state')); }catch(e){ return null; } }
+function reset(){ localStorage.removeItem('px_trade_state'); state = {credits:10000, heat:0, bag:{}, items:seedItems()}; render(); }
+
+elShop.addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  const id = b.dataset.id, act=b.dataset.act;
+  if(act==='buy') buy(id);
+  if(act==='sell') sell(id,1);
+});
+elBag.addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  const id = b.dataset.id, act=b.dataset.act;
+  if(act==='sell1') sell(id,1);
+  if(act==='sellAll') sell(id, state.bag[id]||0);
+});
+
+btnTick.onclick = marketTick;
+btnSave.onclick = ()=>{ save(); alert('Saved!'); };
+btnReset.onclick = ()=>{ if(confirm('Reset game?')) reset(); };
+
+render();
+</script>
+ <footer class="footer">
+    <p>© <span id="year"></span> pikslnet • Let’s build something luminous.</p>
+  </footer>
+</body>
+</html>

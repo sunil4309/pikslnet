@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>pikslnet — Designs from the Future</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#6F00FF">
+</head>
+<body>
+  <!-- Animated background layers -->
+  <div class="bg-grid"></div>
+  <div class="bg-stars"></div>
+
+  <header class="nav">
+   <a class="logo" href="index.html">
+  <img src="images/logo.svg" alt="logo" class="site-logo">
+</a>
+    <button class="hamburger" aria-label="Open Menu" id="menuBtn">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="navbar">
+  <a href="index.html" class="logo"></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="music.html">Music</a></li>
+    <li><a href="pcspec.html">PC Spec</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="">
+        <h1 class="glitch" data-text="Designs from the Future">Designs from the Future</h1>
+        <p class="subtitle">
+          Graphic design, social media visuals, and futuristic brand systems forged in electric purple.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="portfolio.html">View Portfolio</a>
+          <a class="btn btn-ghost" href="contact.html">Start a Project</a>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-num">120+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Brands</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4.5★</span>
+            <span class="stat-label">Client Rating</span>
+          </div>
+        </div>
+      </div>
+      <div class="orb orb-lg"></div>
+      <div class="orb orb-sm"></div>
+    </section>
+
+    <!-- Features / Services -->
+    <section class="cards">
+      <article class="card holo">
+        <div class="card-line"></div>
+        <h3><span class="chip">01</span> Social Media Design</h3>
+        <p>Scroll-stopping posts, carousels, reels covers & ad creatives with neon precision.</p>
+      </article>
+      <article class="card holo">
+        <div class="card-line"></div>
+        <h3><span class="chip">02</span> Branding Systems</h3>
+        <p>Logos, typography, and palettes calibrated for high contrast and future-proof clarity.</p>
+      </article>
+      <article class="card holo">
+        <div class="card-line"></div>
+        <h3><span class="chip">03</span> UI Graphics</h3>
+        <p>Landing page hero art, banners, and dashboard visuals with a cyber aesthetic.</p>
+      </article>
+    </section>
+
+    <!-- Showcase -->
+    <section class="showcase">
+      <header class="section-head">
+        <h2>Featured Work</h2>
+        <a class="link-arrow" href="portfolio.html">Explore all →</a>
+      </header>
+      <div class="grid">
+        <a class="tile" href="portfolio.html#branding"><img alt="Branding" src="images/pc setup 1.png" /></a>
+        <a class="tile" href="portfolio.html#posters"><img alt="Poster" src="images/spider.jpg" /></a>
+        <a class="tile wide" href="portfolio.html#ui"><img alt="UI" src="images/HOME img .png" /></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> pikslnet • Crafted in electric purple</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pikslnet Music Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+  <!-- Navbar -->
+  <header class="nav">
+    <a class="logo" href="index.html">
+  <img src="images/logo.svg" alt="pikslnet logo" class="site-logo">
+</a>
+    <button class="hamburger" aria-label="Open Menu" id="menuBtn"><span></span><span></span><span></span></button>
+    <nav class="navbar">
+  <a href="index.html" class="logo"></a>
+  <ul class="nav-links">
+    <li><a href="index.html" >Home</a></li>
+    <li><a href="portfolio.html" >Portfolio</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="music.html" class="active">Music</a></li>
+    <li><a href="pcspec.html" >PC Spec</a></li>
+  </ul>
+</nav>
+  </header>
+
+  <!-- Music Player -->
+  <section class="music-ui">
+    <div class="album-art">
+      <img id="albumCover" src="images/pc setup 1.png" alt="Album Art">
+    </div>
+
+    <div class="track-info">
+      <h2 id="trackTitle">Track Name</h2>
+      <p id="trackArtist">Artist</p>
+    </div>
+
+    <div class="progress">
+      <span id="currentTime">0:00</span>
+      <input type="range" id="seekBar" value="0" min="0" max="100">
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="controls">
+      <button id="prev">⏮</button>
+      <button id="playPause">▶</button>
+      <button id="next">⏭</button>
+    </div>
+
+    <div class="volume-control">
+      <span>🔊</span>
+      <input type="range" id="volumeBar" min="0" max="1" step="0.01" value="1">
+    </div>
+
+    <ul class="playlist" id="playlist">
+      <li data-src="audios/barbaad.mp3" data-cover="images/spider.png" data-artist="Arijit Singh">Barbaad</li>
+      <li data-src="audios/dhun.mp3" data-cover="images/instagram.png" data-artist="Local Artist">Dhun</li>
+      <li data-src="audios/humsafar.mp3" data-cover="images/cover3.jpg" data-artist="Arijit Singh">Humsafar</li>
+      <li data-src="audios/pardesiya.mp3" data-cover="images/cover4.jpg" data-artist="Classic">Pardesiya</li>
+    </ul>
+
+    <audio id="audioPlayer"></audio>
+  </section>
+ <footer class="footer">
+    <p>© <span id="year"></span> pikslnet • Let’s build something luminous.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
