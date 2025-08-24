@@ -708,7 +708,7 @@ h1{ font-family:"Rajdhani",system-ui; font-size:clamp(36px,6vw,72px); line-heigh
 
 /* PC Spec Page */
 .pcspec-container {
-  padding: 100px 12%;
+  padding: 100px 10%;
   color: #fff;
 }
 
