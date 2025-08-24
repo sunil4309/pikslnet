@@ -831,6 +831,72 @@ h1{ font-family:"Rajdhani",system-ui; font-size:clamp(36px,6vw,72px); line-heigh
   color: #ff4dff;
   text-shadow: 0 0 10px rgba(255, 77, 255, 0.8);
 }
+/* === Mobile fixes === */
+@media (max-width: 768px) {
+  /* Navbar */
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .nav .nav-links {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .nav .nav-links li {
+    display: block;
+  }
+
+  /* Portfolio & PC Specs */
+  .pc-row {
+    grid-template-columns: 1fr; /* stack image, details, price */
+    text-align: center;
+  }
+
+  .pc-price {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* Music Page */
+  .music-ui {
+    padding: 15px;
+  }
+
+  .album-art img {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .playlist {
+    padding-left: 0;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Even smaller phones */
+  .track-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .pc-row {
+    padding: 12px;
+  }
+
+  .pc-details h2 {
+    font-size: 1.1rem;
+  }
+
+  .pc-price {
+    font-size: 1.3rem;
+  }
+}
 
 
 /* Footer */
