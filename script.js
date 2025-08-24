@@ -6,34 +6,7 @@ if (menuBtn && navLinks) {
     navLinks.classList.toggle('hidden');
   });
 
-  
-  // Start hidden on small screens
-  if (window.innerWidth < 640) navLinks.classList.add('hidden');
-  window.addEventListener('resize', () => {
-    if (window.innerWidth >= 640) navLinks.classList.remove('hidden');
-  });
-}
-// Add glow effect to navbar on scroll
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".nav");
-  if (window.scrollY > 20) {
-    nav.classList.add("scrolled");
-  } else {
-    nav.classList.remove("scrolled");
-  }
-});
-
-// Navbar under-glow effect on scroll
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector("header.nav");
-  if (window.scrollY > 10) {
-    nav.classList.add("scrolled");
-  } else {
-    nav.classList.remove("scrolled");
-  }
-});
-
-// Hamburger toggle
+  // Hamburger toggle
 const menuBtn = document.getElementById("menuBtn");
 const navbar = document.getElementById("navbar");
 
@@ -73,6 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   );
 });
+
+  // Start hidden on small screens
+  if (window.innerWidth < 640) navLinks.classList.add('hidden');
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 640) navLinks.classList.remove('hidden');
+  });
+}
+// Add glow effect to navbar on scroll
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".nav");
+  if (window.scrollY > 20) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+});
+
+// Navbar under-glow effect on scroll
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector("header.nav");
+  if (window.scrollY > 10) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+});
+
 
 
 // --- Contact Form Submit with Popup ---
